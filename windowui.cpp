@@ -21,6 +21,10 @@ WindowUI::WindowUI(QWidget *parent)
     ui->input_g->setButtonSymbols(QAbstractSpinBox::NoButtons);
     ui->input_a->setButtonSymbols(QAbstractSpinBox::NoButtons);
     ui->input_B->setButtonSymbols(QAbstractSpinBox::NoButtons);
+
+    mode = NUM_MODE;
+    ui->ENCRY_NUM_MODE->setChecked(true);
+    ui->ENCRY_TEXT_MODE->setChecked(false);
 }
 
 WindowUI::~WindowUI() {
@@ -125,5 +129,46 @@ void WindowUI::on_start_encry_clicked() {
 
 void WindowUI::on_start_decry_clicked() {
     ui->Window_Page->setCurrentIndex(1);
+}
+
+
+void WindowUI::on_ENCRY_Return_clicked() {
+    ui->Window_Page->setCurrentIndex(0);
+}
+
+
+void WindowUI::on_ENCRY_NUM_MODE_clicked() {
+    mode = NUM_MODE;
+    ui->ENCRY_NUM_MODE->setChecked(true);
+    ui->ENCRY_TEXT_MODE->setChecked(false);
+}
+
+
+void WindowUI::on_ENCRY_TEXT_MODE_clicked() {
+    mode = TEXT_MODE;
+    ui->ENCRY_NUM_MODE->setChecked(false);
+    ui->ENCRY_TEXT_MODE->setChecked(true);
+}
+
+
+void WindowUI::on_ENCRY_CLEAR_clicked() {
+    ui->ENCRY_Input->clear();
+    ui->ENCRY_Output->clear();
+}
+
+
+void WindowUI::on_ENCRY_START_clicked() {
+    QString input = ui->ENCRY_Input->toPlainText();
+    if(mode == NUM_MODE) {
+        bool is_num;
+        int num = input.toInt(&is_num);
+        if(!(is_num && QString::number(num) == input)){
+            QMessageBox::warning(this,"输入非法","「数字模式」下只能输入有限长度10进制整数！\n其它数据请使用「文本模式」输入  ");
+            return;
+        }
+    }
+    ui->ENCRY_Output->clear();
+    QString output = encry_num.encry(this->mode, input);
+    ui->ENCRY_Output->append(output);
 }
 

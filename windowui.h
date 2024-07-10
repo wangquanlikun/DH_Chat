@@ -3,7 +3,11 @@
 
 #include <QWidget>
 #include <QMessageBox>
+#include <QString>
 #include "encry_num.h"
+
+#define NUM_MODE 1
+#define TEXT_MODE 2
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,9 +33,16 @@ private slots:
     void on_start_encry_clicked();
     void on_start_decry_clicked();
 
+    void on_ENCRY_Return_clicked();
+    void on_ENCRY_NUM_MODE_clicked();
+    void on_ENCRY_TEXT_MODE_clicked();
+    void on_ENCRY_CLEAR_clicked();
+    void on_ENCRY_START_clicked();
+
 private:
     Ui::WindowUI *ui;
     Encry_num encry_num;
     bool can_run_encry;
+    int mode;
 };
 #endif // WINDOWUI_H
