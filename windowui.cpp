@@ -172,3 +172,23 @@ void WindowUI::on_ENCRY_START_clicked() {
     ui->ENCRY_Output->append(output);
 }
 
+
+void WindowUI::on_DECRY_Return_clicked() {
+    ui->Window_Page->setCurrentIndex(0);
+}
+
+void WindowUI::on_DECRY_CLEAR_clicked() {
+    ui->DECRY_Input->clear();
+    ui->DECRY_Output->clear();
+}
+
+void WindowUI::on_DECRY_START_clicked() {
+    QString input = ui->DECRY_Input->toPlainText();
+    if(input[0] != '1' && input[0] != '2'){
+        QMessageBox::warning(this,"输入非法","错误的加密消息格式  ");
+        return;
+    }
+    ui->DECRY_Output->clear();
+    QString output = encry_num.decry(input);
+    ui->DECRY_Output->append(output);
+}

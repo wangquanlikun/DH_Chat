@@ -2,6 +2,7 @@
 #define ENCRY_NUM_H
 
 #include <QString>
+#include <QChar>
 #include <cstdint>
 
 class Encry_num

@@ -2,6 +2,7 @@
 #include "windowui.h"
 #include <vector>
 #include <cstdint>
+#include <map>
 
 Encry_num::Encry_num() {
     reset_num();
@@ -75,7 +76,7 @@ QString Encry_num::encry(int mode, QString input){
         output += QString::asprintf("%08X", out32);
     }
     else if(mode == TEXT_MODE){
-        output += QString::number(NUM_MODE);
+        output += QString::number(TEXT_MODE);
         std::vector<uint32_t> unicodeVector;
         for (QChar ch : input) {
             unicodeVector.push_back(ch.unicode());
@@ -90,8 +91,38 @@ QString Encry_num::encry(int mode, QString input){
 }
 
 QString Encry_num::decry(QString input) {
+    std::map<QChar, int> Hex_Char2int;
+    Hex_Char2int['0'] = 0x0, Hex_Char2int['1'] = 0x1, Hex_Char2int['2'] = 0x2, Hex_Char2int['3'] = 0x3, Hex_Char2int['4'] = 0x4, Hex_Char2int['5'] = 0x5, Hex_Char2int['6'] = 0x6, Hex_Char2int['7'] = 0x7;
+    Hex_Char2int['8'] = 0x8, Hex_Char2int['9'] = 0x9, Hex_Char2int['A'] = 0xA, Hex_Char2int['B'] = 0xB, Hex_Char2int['C'] = 0xC, Hex_Char2int['D'] = 0xD, Hex_Char2int['E'] = 0xE, Hex_Char2int['F'] = 0xF;
     QString output;
-
+    QChar textmode = input[0];
+    if(textmode == QString::number(NUM_MODE)[0]){
+        uint32_t out32 = 0;
+        QByteArray byteArray = input.toUtf8();
+        for (int j = 1; j <= 8; j++) {
+            out32 = (out32 << 4) + Hex_Char2int[byteArray[j]];
+        }
+        output += QString::number((int)decry_32(out32));
+    }
+    else if(textmode == QString::number(TEXT_MODE)[0]){
+        std::vector<uint32_t> out32;
+        QByteArray byteArray = input.toUtf8();
+        for (int i = 1; i < byteArray.size(); i += 8) {
+            if (i + 8 <= byteArray.size()) {
+                uint32_t value = 0;
+                for (int j = 0; j < 8; ++j) {
+                    value = (value << 4) + Hex_Char2int[byteArray[j + i]];
+                }
+                out32.push_back(value);
+            }
+        }
+        int out32_len = (int)out32.size();
+        uint32_t unicode;
+        for(int i = 0; i < out32_len; i++){
+            unicode = decry_32(out32[i]);
+            output += QChar(unicode);
+        }
+    }
     return output;
 }
 

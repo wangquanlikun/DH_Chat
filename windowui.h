@@ -39,6 +39,10 @@ private slots:
     void on_ENCRY_CLEAR_clicked();
     void on_ENCRY_START_clicked();
 
+    void on_DECRY_Return_clicked();
+    void on_DECRY_CLEAR_clicked();
+    void on_DECRY_START_clicked();
+
 private:
     Ui::WindowUI *ui;
     Encry_num encry_num;

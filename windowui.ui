@@ -710,7 +710,192 @@ QTextBrowser:focus {
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Decry"/>
+     <widget class="QWidget" name="Decry">
+      <property name="styleSheet">
+       <string notr="true">QPushButton {
+    background-color: rgb(110, 164, 193);  /* 按钮背景颜色 */
+    /* 文本颜色 */
+	color: rgb(218, 240, 251);
+    border: 2px solid #2980b9;  /* 边框颜色 */
+    border-radius: 5px;  /* 圆角半径，设为宽度和高度的一半以形成圆形 */
+	min-width: 80px;  /* 最小宽度 */
+    min-height: 30px;  /* 最小高度 */
+    max-width: 80px;  /* 最大宽度 */
+    max-height: 40px;  /* 最大高度 */
+    font-size: 14px;  /* 字体大小 */
+    font-weight: bold;  /* 字体粗细 */
+}
+
+QPushButton:hover {
+    background-color: #2980b9;  /* 悬停时的背景颜色 */
+    border-color: #1c6ea4;  /* 悬停时的边框颜色 */
+}
+
+QPushButton:pressed {
+    background-color: #1c6ea4;  /* 按下时的背景颜色 */
+    border-color: #2980b9;  /* 按下时的边框颜色 */
+}
+
+QPushButton:disabled {
+    background-color: #bdc3c7;  /* 禁用时的背景颜色 */
+    color: #7f8c8d;  /* 禁用时的文本颜色 */
+    border-color: #95a5a6;  /* 禁用时的边框颜色 */
+}
+
+QTextEdit {
+    background-color: rgba(162, 208, 232, 125);  /* 背景颜色 */
+    color: rgb(0,0,0);               /* 字体颜色 */
+    font-family: Arial, sans-serif;  /* 字体 */
+    font-size: 14px;  /* 字体大小 */
+   border: 4px solid rgb(255, 255, 255);  /* 边框 */
+    border-radius: 20px;  /* 边框圆角 */
+    padding: 10px;  /* 内边距 */
+}
+
+QTextEdit:focus {
+    border: 2px solid #0066cc;  /* 聚焦时的边框颜色 */
+}
+QTextBrowser {
+    background-color:rgba(162, 208, 232, 125);    /* 背景颜色 */
+    border: 4px solid rgb(255, 255, 255);   /* 边框颜色和宽度 */
+    border-radius: 20px;           /* 圆角半径 */
+    padding: 10px;                 /* 内边距 */
+    font-size: 14px;              /* 字体大小 */
+     color: rgb(0,0,0);              /* 字体颜色 */
+}
+
+QTextBrowser:focus {
+    border: 2px solid #0066cc;    /* 获取焦点时的边框颜色 */
+}</string>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_7">
+       <property name="leftMargin">
+        <number>10</number>
+       </property>
+       <property name="topMargin">
+        <number>10</number>
+       </property>
+       <property name="rightMargin">
+        <number>10</number>
+       </property>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item row="0" column="0">
+        <layout class="QVBoxLayout" name="verticalLayout_5">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item>
+            <widget class="QLabel" name="TEXT_DECRY">
+             <property name="font">
+              <font>
+               <family>得意黑</family>
+               <pointsize>24</pointsize>
+               <italic>true</italic>
+              </font>
+             </property>
+             <property name="text">
+              <string>消息解密</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_22">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="DECRY_Return">
+             <property name="text">
+              <string>返回</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QTextEdit" name="DECRY_Input">
+           <property name="placeholderText">
+            <string>在此输入加密消息</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextBrowser" name="DECRY_Output">
+           <property name="placeholderText">
+            <string>在此输出原始消息</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_11">
+           <item>
+            <spacer name="horizontalSpacer_23">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="DECRY_CLEAR">
+             <property name="text">
+              <string>清除输入</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_24">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="DECRY_START">
+             <property name="text">
+              <string>开始解密</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_25">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="Encry">
       <property name="styleSheet">
        <string notr="true">QPushButton {
